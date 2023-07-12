@@ -113,6 +113,19 @@
         a {
           color: #00aa72;
         }
+
+        @media (max-width: 767px) {
+          .is-hidden-mobile {
+            display: none;
+          }
+          .coins--list{
+            padding-left: 23px;
+          }
+
+         
+
+
+        }
       
 
       </style>
@@ -131,6 +144,7 @@
      
       <section class="nav__header">
         <nav class="nav__container container">
+          <a href="/">
           <div class="img__container">
             <img src="./assets/img/logo_header.png" alt="KINGZ" width="50px" />
             <img
@@ -140,6 +154,7 @@
               class="img__hero"
             />
           </div>
+          </a>
           <div class="nav__item">
             <div class="nav__items">
               <input
@@ -152,9 +167,12 @@
               <i class="fa-solid fa-magnifying-glass search-btn"></i>
             </div>
             <div class="menu__container">
-              <button class="btn__submit-coin" type="submit">
+                <a href="/boosts" class="button buy-boosts">
+                    <span class="has-image"><img src="/assets/img/boost.svg" alt=""></span><span>x0</span>
+                </a>
+              <a href="/submit.php" class="btn__submit-coin">
                 Submit coin
-              </button>
+              </a>
               <div class="burger__menu">
                 <div class="bar"></div>
                 <div class="bar"></div>

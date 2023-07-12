@@ -23,10 +23,6 @@
 
   <?php include_once "./inc/main.php" ?>
     
-  
-
-
-  
   <?php include_once "./inc/footer.php"; ?>
    
   </body>
