@@ -125,7 +125,7 @@
         <p>ETH: <span>$0</span></p>
       
         <div class="topbar-right is-hidden-mobile">
-          <a class="hlink" href="/register">Register</a> / <a  class="hlink" href="/login">Login</a>
+          <a class="hlink" href="/register.php">Register</a> / <a  class="hlink" href="/login.php">Login</a>
         </div>
       </div>
      

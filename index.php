@@ -19,13 +19,14 @@
     <title>KINGZ CRYPTO</title>
   </head>
   <body>
-    <?php
-    include_once "./inc/nav.php";
-    ?>
+  <?php     include_once "./inc/nav.php";  ?>
+
+  <?php include_once "./inc/main.php" ?>
     
   
 
 
+  
   <?php include_once "./inc/footer.php"; ?>
    
   </body>
