@@ -27,6 +27,7 @@ body {
   padding: 5px;
   border-bottom: 0.1px solid #ffffff65;
   overflow: hidden;
+  padding-left: 223px;
 }
 
 .burger__menu .bar {
