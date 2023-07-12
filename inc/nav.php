@@ -170,7 +170,7 @@
                 <a href="/boosts" class="button buy-boosts">
                     <span class="has-image"><img src="/assets/img/boost.svg" alt=""></span><span>x0</span>
                 </a>
-              <a href="/submit.php" class="btn__submit-coin">
+              <a href="/submit.php" class="btn__submit-coin" style="color: #ffffff;">
                 Submit coin
               </a>
               <div class="burger__menu">
