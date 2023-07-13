@@ -260,84 +260,15 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                 </div>
             </div>
 
-            <div class="columns">
-    <div class="column is-12">
-        <div class="faq">
-            <h2>Frequently Asked Questions</h2>
-                        <div class="item">
-                <div class="question">
-                    <div>
-                        What are Boosts?
-                    </div>
-                    <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5.50595 5.8272C5.561 5.88049 5.63466 5.92407 5.72058 5.95417C5.8065 5.98427 5.90212 6 5.99919 6C6.09626 6 6.19187 5.98427 6.27779 5.95417C6.36372 5.92407 6.43738 5.88049 6.49243 5.8272L11.8928 0.627557C11.9554 0.567584 11.992 0.497339 11.9988 0.424453C12.0057 0.351568 11.9824 0.27883 11.9315 0.214143C11.8807 0.149456 11.8042 0.0952928 11.7105 0.0575393C11.6167 0.0197859 11.5092 -0.00011453 11.3996 4.95827e-07L0.598764 4.95827e-07C0.489461 0.000301439 0.38235 0.0204577 0.288948 0.0583016C0.195546 0.0961456 0.119388 0.150245 0.0686635 0.214783C0.0179391 0.279321 -0.00543232 0.351854 0.00106256 0.424584C0.00755745 0.497313 0.0436729 0.567486 0.105525 0.627557L5.50595 5.8272Z"></path>
-                    </svg>
-                </div>
-                <div class="answer">
-                    Boosts are used to rank the project in our promoted section. Anyone can buy Boosts to improve the ranking of a CoinSniper listing in the promoted section.
-                </div>
-            </div>
-                        <div class="item">
-                <div class="question">
-                    <div>
-                        Do Boosts last forever?
-                    </div>
-                    <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5.50595 5.8272C5.561 5.88049 5.63466 5.92407 5.72058 5.95417C5.8065 5.98427 5.90212 6 5.99919 6C6.09626 6 6.19187 5.98427 6.27779 5.95417C6.36372 5.92407 6.43738 5.88049 6.49243 5.8272L11.8928 0.627557C11.9554 0.567584 11.992 0.497339 11.9988 0.424453C12.0057 0.351568 11.9824 0.27883 11.9315 0.214143C11.8807 0.149456 11.8042 0.0952928 11.7105 0.0575393C11.6167 0.0197859 11.5092 -0.00011453 11.3996 4.95827e-07L0.598764 4.95827e-07C0.489461 0.000301439 0.38235 0.0204577 0.288948 0.0583016C0.195546 0.0961456 0.119388 0.150245 0.0686635 0.214783C0.0179391 0.279321 -0.00543232 0.351854 0.00106256 0.424584C0.00755745 0.497313 0.0436729 0.567486 0.105525 0.627557L5.50595 5.8272Z"></path>
-                    </svg>
-                </div>
-                <div class="answer">
-                    Listings do not lose Boosts once they receive them.
-                </div>
-            </div>
-                        <div class="item">
-                <div class="question">
-                    <div>
-                        Can I do anything else with Boosts?
-                    </div>
-                    <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5.50595 5.8272C5.561 5.88049 5.63466 5.92407 5.72058 5.95417C5.8065 5.98427 5.90212 6 5.99919 6C6.09626 6 6.19187 5.98427 6.27779 5.95417C6.36372 5.92407 6.43738 5.88049 6.49243 5.8272L11.8928 0.627557C11.9554 0.567584 11.992 0.497339 11.9988 0.424453C12.0057 0.351568 11.9824 0.27883 11.9315 0.214143C11.8807 0.149456 11.8042 0.0952928 11.7105 0.0575393C11.6167 0.0197859 11.5092 -0.00011453 11.3996 4.95827e-07L0.598764 4.95827e-07C0.489461 0.000301439 0.38235 0.0204577 0.288948 0.0583016C0.195546 0.0961456 0.119388 0.150245 0.0686635 0.214783C0.0179391 0.279321 -0.00543232 0.351854 0.00106256 0.424584C0.00755745 0.497313 0.0436729 0.567486 0.105525 0.627557L5.50595 5.8272Z"></path>
-                    </svg>
-                </div>
-                <div class="answer">
-                    For now, Boosts are only used for ranking the promoted section. Without a promoted spot, Boosts have no other utility for a listing.
-                </div>
-            </div>
-                        <div class="item">
-                <div class="question">
-                    <div>
-                        How can I buy Boosts, and what do they cost?
-                    </div>
-                    <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5.50595 5.8272C5.561 5.88049 5.63466 5.92407 5.72058 5.95417C5.8065 5.98427 5.90212 6 5.99919 6C6.09626 6 6.19187 5.98427 6.27779 5.95417C6.36372 5.92407 6.43738 5.88049 6.49243 5.8272L11.8928 0.627557C11.9554 0.567584 11.992 0.497339 11.9988 0.424453C12.0057 0.351568 11.9824 0.27883 11.9315 0.214143C11.8807 0.149456 11.8042 0.0952928 11.7105 0.0575393C11.6167 0.0197859 11.5092 -0.00011453 11.3996 4.95827e-07L0.598764 4.95827e-07C0.489461 0.000301439 0.38235 0.0204577 0.288948 0.0583016C0.195546 0.0961456 0.119388 0.150245 0.0686635 0.214783C0.0179391 0.279321 -0.00543232 0.351854 0.00106256 0.424584C0.00755745 0.497313 0.0436729 0.567486 0.105525 0.627557L5.50595 5.8272Z"></path>
-                    </svg>
-                </div>
-                <div class="answer">
-                    One boost costs $10. You get bonus boosts if you buy more packages. Prices are displayed above.
-                </div>
-            </div>
-                        <div class="item">
-                <div class="question">
-                    <div>
-                        How can I pay for Boosts?
-                    </div>
-                    <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5.50595 5.8272C5.561 5.88049 5.63466 5.92407 5.72058 5.95417C5.8065 5.98427 5.90212 6 5.99919 6C6.09626 6 6.19187 5.98427 6.27779 5.95417C6.36372 5.92407 6.43738 5.88049 6.49243 5.8272L11.8928 0.627557C11.9554 0.567584 11.992 0.497339 11.9988 0.424453C12.0057 0.351568 11.9824 0.27883 11.9315 0.214143C11.8807 0.149456 11.8042 0.0952928 11.7105 0.0575393C11.6167 0.0197859 11.5092 -0.00011453 11.3996 4.95827e-07L0.598764 4.95827e-07C0.489461 0.000301439 0.38235 0.0204577 0.288948 0.0583016C0.195546 0.0961456 0.119388 0.150245 0.0686635 0.214783C0.0179391 0.279321 -0.00543232 0.351854 0.00106256 0.424584C0.00755745 0.497313 0.0436729 0.567486 0.105525 0.627557L5.50595 5.8272Z"></path>
-                    </svg>
-                </div>
-                <div class="answer">
-                    You can pay using BTC, ETH, BNB, BUSD and USDT. We support BTC, ERC20 en BEP20 networks.
-                </div>
-            </div>
-                    </div>
-    </div>
-</div>
-
-            <div class="need-help">
-    Need help? <a class="button is-primary" target="_blank" href="https://t.me/duncancoinsniper"><img src="/assets/img/telegram-white.svg">Contact support</a>
-</div>
+        <div class="columns">
+   
         </div>
-    </section>
+
+    <div class="need-help">
+        Need help? <a class="button is-primary" target="_blank" href="https://t.me/duncancoinsniper"><img src="/assets/img/telegram-white.svg">Contact support</a>
+    </div>
+    </div>
+</section>
 
     
   
