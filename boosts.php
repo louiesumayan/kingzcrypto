@@ -196,7 +196,7 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                             <input type="hidden" name="packages">
                             <div class="header">
                                 <p><b>Boost Package</b></p>
-                                <p><span class="count">No</span> package<span class="s is-hidden">s</span> selected</p>
+                                <p><span class="count">1</span> package<span class="s is-hidden">s</span> selected</p>
                             </div>
                             <div class="has-table">
                                 <table class="table boost-packages is-fullwidth">
@@ -209,7 +209,15 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr><td class="has-text-centered" colspan="6">Please select Boost package</td></tr>
+                                    <tr>
+                                        <td class="has-text-centered" colspan="6">Please select Boost package</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b><span class="tag gray">x1000</span> Boosts</b> <br><span class="small">+600 Bonus</span></td>
+                                        <td><span class="tag">x1600</span></td>
+                                        <td>$ 10000</td>
+                                        <td><img class="remove-package" src="./assets/img/payments/close.svg" data-id="9"></td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -229,7 +237,7 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                             </div>
 
                             <div class="has-button">
-                                <button type="submit" class="button is-primary" disabled="">
+                                <button type="submit" class="button is-primary" >
                                     Buy <span class="boost-amount"></span> Boosts
                                 </button>
                             </div>
