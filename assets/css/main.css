@@ -2471,7 +2471,7 @@ div.icon-text {
 }
 
 .table {
-    background-color: #fff;
+    background-color: black;
     color: #363636
 }
 
@@ -2588,11 +2588,11 @@ div.icon-text {
 
 .table thead td,.table thead th {
     border-width: 0 0 2px;
-    color: #363636
+    color: #ffffff
 }
 
 .table tfoot {
-    background-color: transparent
+    background-color: #212534;
 }
 
 .table tfoot td,.table tfoot th {
@@ -2601,7 +2601,7 @@ div.icon-text {
 }
 
 .table tbody {
-    background-color: transparent
+    background-color: #212534;
 }
 
 .table tbody tr:last-child td,.table tbody tr:last-child th {
@@ -5663,7 +5663,7 @@ a.navbar-item:focus,a.navbar-item:focus-within,a.navbar-item:hover,a.navbar-item
 }
 
 .navbar-item img {
-    max-height: 1.75rem
+    /*max-height: 1.75rem*/
 }
 
 .navbar-item.has-dropdown {
@@ -6556,6 +6556,14 @@ a.panel-block:hover,label.panel-block:hover {
 
 .tabs.is-large {
     font-size: 1.5rem
+}
+
+.col-name  {
+    color: white;
+}
+
+td.col-name {
+    color: white;
 }
 
 .column {

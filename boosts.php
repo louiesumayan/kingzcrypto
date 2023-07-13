@@ -1,3 +1,7 @@
+<?php
+// Initialize the session
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,17 +11,11 @@
     <script  src="https://kit.fontawesome.com/b7c265b79a.js"      crossorigin="anonymous"    ></script>
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-      integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script defer src="./assets/script/index.js"></script>
+    
     <title>KINGZ CRYPTO</title>
   </head>
   <body>
-  <?php     include_once "./inc/nav.php";  ?>
+  <?php     include_once "./inc/nav2.php";  ?>
   <section class="tabs">
     <div class="container">
         <ul>
@@ -340,6 +338,7 @@
 
   
   <?php include_once "./inc/footer.php"; ?>
-   
+  <script  src="./assets/jquery-3.7.0.min.js" ></script>
+  <script defer src="./assets/script/main.js"></script>
   </body>
 </html>

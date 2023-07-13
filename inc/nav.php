@@ -146,13 +146,8 @@
         <nav class="nav__container container">
           <a href="/">
           <div class="img__container">
-            <img src="./assets/img/logo_header.png" alt="KINGZ" width="50px" />
-            <img
-              src="./assets/img/kingzhero.png"
-              alt="kingzhero"
-              width="200px"
-              class="img__hero"
-            />
+            <img src="/assets/img/logo_header.png" alt="KINGZ" width="50px" />
+            <img              src="/assets/img/kingzhero.png"              alt="kingzhero"              width="200px"              class="img__hero"            />
           </div>
           </a>
           <div class="nav__item">
@@ -167,7 +162,7 @@
               <i class="fa-solid fa-magnifying-glass search-btn"></i>
             </div>
             <div class="menu__container">
-                <a href="/boosts" class="button buy-boosts">
+                <a href="/boosts.php" class="button buy-boosts">
                     <span class="has-image"><img src="/assets/img/boost.svg" alt=""></span><span>x0</span>
                 </a>
               <a href="/submit.php" class="btn__submit-coin" style="color: #ffffff;">

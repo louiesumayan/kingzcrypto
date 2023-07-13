@@ -1,20 +1,5 @@
 
-<section class="banner_container">
-      <a href="https://twitter.com/KingCryptoHodl" target="_blank">
-        <img src="./assets/img/kingz_banner.gif" alt="" />
-      </a>
-    </section>
-    <a
-      target="_blank"
-      class="ads_here_banner container"
-      href="https://twitter.com/KingCryptoHodl"
-      >Your banner here? Contact us!</a
-    >
-    <section class="banner_container">
-      <a href="https://twitter.com/KingCryptoHodl" target="_blank">
-        <img src="./assets/img/kingz_banner.gif" alt="" />
-      </a>
-    </section>
+
 
     <div class="table__content">
       <section class="coins_listed">
@@ -638,11 +623,4 @@
       </section>
     </div>
 
-    <section class="banner_container">
-      <a href="https://twitter.com/KingCryptoHodl" target="_blank">
-        <img src="./assets/img/kingz_banner.gif" alt="" />
-      </a>
-      <a href="https://twitter.com/KingCryptoHodl" target="_blank">
-        <img src="./assets/img/kingz_banner.gif" alt="" />
-      </a>
-    </section>
+    

@@ -69,12 +69,13 @@ const search = document.querySelector('.search-btn');
 const menu = document.getElementById('menu');
 const close_menu = document.getElementById('close');
 const ovly = document.querySelector('.overlay');
-const burger_menu = document.querySelector('.burger__menu');
+//const burger_menu = document.querySelector('.burger__menu');
 
-burger_menu.addEventListener('click', () => {
+/*burger_menu.addEventListener('click', () => {
   ovly.classList.toggle('hide-ovly');
   menu.classList.toggle('hide-nav');
-});
+})
+*/
 
 ovly.addEventListener('click', () => {
   ovly.classList.add('hide-ovly');

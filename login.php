@@ -1,3 +1,98 @@
+<?php
+// Initialize the session
+session_start();
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: /dashboard");
+    exit;
+}
+ 
+
+ 
+// Include config file
+require_once "./inc/db.php";
+ 
+// Define variables and initialize with empty values
+$email = $password = "";
+$username_err = $password_err = $login_err = "";
+ 
+// Processing form data when form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if username is empty
+    if (empty(trim($_POST["email"]))) {
+        $username_err = "Please enter username.";
+    } else {
+        $email = trim($_POST["email"]);
+    }
+    
+    // Check if password is empty
+    if (empty(trim($_POST["password"]))) {
+        $password_err = "Please enter your password.";
+    } else {
+        $password = trim($_POST["password"]);
+    }
+    
+    // Validate credentials
+    if (empty($username_err) && empty($password_err)) {
+        // Prepare a select statement
+        //$sql = "SELECT id, username, urole, password, name FROM users WHERE username = ? and urole is not null";
+        $sql = "SELECT id, email, name, password FROM user where email = ?";
+        
+        if ($stmt = $mysqli->prepare($sql)) {
+            // Bind variables to the prepared statement as parameters
+            $stmt->bind_param("s", $param_username);
+            
+            // Set parameters
+            $param_username = $email;
+            
+            // Attempt to execute the prepared statement
+            if ($stmt->execute()) {
+                // Store result
+                $stmt->store_result();
+                
+                // Check if username exists, if yes then verify password
+                if ($stmt->num_rows == 1) {
+                    // Bind result variables
+                    $stmt->bind_result($id, $email, $name, $hashed_password);
+                    if ($stmt->fetch()) {
+                        if (password_verify($password, $hashed_password)) {
+                            // Password is correct, so start a new session                            
+                            
+                            // Store data in session variables
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["id"] = $id;
+                            $_SESSION["email"] = $username;                           
+                            $_SESSION["name"] = $name;
+                            
+                          
+                            
+                            // Redirect user to welcome page
+                            header("location: /");
+                            exit();
+                        } else {
+                            // Password is not valid, display a generic error message
+                            $login_err = "Invalid username or password.";
+                        }
+                    }
+                } else {
+                    // Username doesn't exist, display a generic error message
+                    $login_err = "Invalid username or password or your account is on pending for approval.";
+                }
+            } else {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            $stmt->close();
+        }
+    }
+    
+    // Close connection
+    $mysqli->close();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,18 +102,13 @@
     <script  src="https://kit.fontawesome.com/b7c265b79a.js"      crossorigin="anonymous"    ></script>
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-      integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script defer src="./assets/script/index.js"></script>
+  
     <title>KINGZ CRYPTO</title>
   </head>
   <body>
-  <?php     include_once "./inc/nav.php";  ?>
+  <?php     include_once "./inc/nav2.php";  ?>
 
+  
   <section class="login">
     <div class="container">
         <div class="columns">
@@ -35,7 +125,8 @@
                             <label class="label">Email</label>
                             <div class="control">
                                 <input class="input" type="email" placeholder="Email" name="email" required="" value="">
-                            </div>                                                    
+                            </div>   
+                            <p class="help is-danger"><?php echo $login_err; ?></p>                                                 
                           </div>
                         <div class="field">
                             <label class="label">Password</label>
@@ -75,6 +166,7 @@
 
   
   <?php include_once "./inc/footer.php"; ?>
-   
+  <script  src="./assets/jquery-3.7.0.min.js" ></script>
+  <script defer src="./assets/script/main.js"></script>
   </body>
 </html>

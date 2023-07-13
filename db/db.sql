@@ -1,0 +1,1 @@
+CREATE TABLE `u266886950_coins`.`user` (`id` INT NOT NULL , `name` INT NOT NULL , `email` INT NOT NULL , `password` INT NOT NULL , `reg_date` INT NOT NULL , `auth` INT NOT NULL ) ENGINE = InnoDB;
