@@ -1,6 +1,16 @@
 <?php 
+
 session_start();
+
 define( 'ABSPATH', dirname( __FILE__, 2 ) . '/' );
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(!isset($_SESSION["loggedin"])){
+  header("location: /login.php");
+  exit;
+}
+
+
 
 ?>
 <!DOCTYPE html>
@@ -28,14 +38,12 @@ define( 'ABSPATH', dirname( __FILE__, 2 ) . '/' );
 
   <br>
   <!-- part 1 -->
-  <?php include_once ABSPATH."/inc/rocket.php"; ?>  
+    <?php include_once ABSPATH."/inc/users.php"; ?> 
 
-  <!-- part 2-->
-  <?php include_once ABSPATH."/inc/promoted.php"; ?>  
 
-   <!-- part 3-->
-   <?php include_once ABSPATH."/inc/coin-list.php"; ?>  
-    
+        
+
+<hr>
   <?php include_once ABSPATH."/inc/footer.php"; ?>  
 
   <script  src="/assets/jquery-3.7.0.min.js" ></script>

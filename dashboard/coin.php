@@ -1,6 +1,16 @@
 <?php 
 
+session_start();
+
 define( 'ABSPATH', dirname( __FILE__, 2 ) . '/' );
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(!isset($_SESSION["loggedin"])){
+  header("location: /login.php");
+  exit;
+}
+
+
 
 ?>
 <!DOCTYPE html>

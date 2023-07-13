@@ -115,6 +115,20 @@
                     <i class="fas fa-user-plus"></i>Register
                 </a>
             </li>
+            <?php }else{ ?>
+                <li>
+                    <a href="/dashboard/user.php">
+                        <i class="fas fa-users"></i>User Manager
+                    </a>
+                </li>
+                <li>
+                    <form action="" method="" class="logout">
+                        <input type="hidden" name="_token" value="desmw2L6is8I6dgp0xRGAcTYHXgBBRUuhAO1yGOy">                   
+                        <a href="/logout.php">
+                            <i class="fas fa-sign-out-alt"></i>Logout
+                        </a>
+                    </form>
+                </li>
             <?php } ?>
          </ul>
         <div class="nav-label">Cryptocurrencies</div>

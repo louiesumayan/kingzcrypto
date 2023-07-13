@@ -15,7 +15,7 @@
             <div class="bottom">
                       <div class="has-bar">
                           <div class="bar"></div>
-                          <div class="bar-progress" style="width: 18.75%;">
+                          <div class="bar-progress" style="width: 50%;">
                               <img src="/assets/img/airdrop-rocket.svg" alt="">
                           </div>
                       </div>
