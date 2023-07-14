@@ -3,11 +3,14 @@
 session_start();
 
 define( 'ABSPATH', dirname( __FILE__, 2 ) . '/' );
+print_r($_SESSION);
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(!isset($_SESSION["loggedin"])){
-  header("location: /login.php");
-  exit;
+if(isset($_SESSION["loggedin"]) ){
+  if($_SESSION['auth'] != 'admin'){
+    header("location: /dashboard");
+    exit;
+  } 
 }
 
 require_once ABSPATH."inc/db.php"

@@ -1,5 +1,29 @@
+<?php 
+   if ($_SERVER["REQUEST_METHOD"] == "GET") {                        
+      if(isset($_GET['tk']) && isset($_GET['del'])){
+         $_token = $mysqli -> real_escape_string($_GET['tk']);
+         $id = $mysqli -> real_escape_string($_GET['del']);
+         if($_token != $_SESSION['_token']){
+            die("Invalid Token");
+        }else{
+            $sql = "DELETE FROM user WHERE id = $id";
+
+            if(executeQueryV2($sql, $mysqli)){
+               $notif = "<div class='container'>
+                           <div class='message promoted-boost-message' style='margin-top: 1rem;'>
+                               <i class='fas fa-info-circle'></i> User Delete Successfully
+                           </div>
+                       </div>";
+               
+           }
+        }
+      }
+   }
+
+   if(isset($notif)){ echo $notif; };
 
 
+?>
 <div class="listings promoted">
    <div class="container containerless">
       <div class="container">
@@ -43,7 +67,7 @@
             </thead>
             <tbody>
                <?php
-
+                  $token = $_SESSION['_token'];
                   $suser = "SELECT id, name, email, auth FROM user";
 
                   $res = executeQueryV2($suser, $mysqli);
@@ -54,7 +78,12 @@
                      $id = $row['id'];
                      $name = $row['name'];
                      $email = $row['email'];
-                     $auth = 'admin'; //$row['auth'];
+                     $auth = $row['auth'];
+                     if ($auth == ''){
+                        $auth = "<i class='fas fa-info-circle'></i>Pending";  
+                     }else{
+                        $auth = "<i class='fas fa-shield-alt'></i>$auth";
+                     }
                      echo "<tr data-listingid='47851'>
                               <td class='sticky-col display-mobile'>
                                  <div>
@@ -99,14 +128,14 @@
                               </td>
                               <td>
                                  <span class='tag audit'>
-                                 <i class='fas fa-shield-alt'></i> $auth
+                                  $auth
                                  </span>
                               </td>
                               <td class='display-desktop ignore'>
-                                 <a href='/dashboard/edit-user.php?id=$id' class='button is-primary  ' >
+                                 <a href='/dashboard/edit-user.php?id=$id&tk=$token' class='button is-primary  ' >
                                     Edit
                                  </a>
-                                 <a href='' class='button is-secondary '>
+                                 <a href='/dashboard/user.php?del=$id&tk=$token' class='button is-secondary '>
                                     Delete
                                  </a>
                               </td>                            

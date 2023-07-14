@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement
         //$sql = "SELECT id, username, urole, password, name FROM users WHERE username = ? and urole is not null";
-        $sql = "SELECT id, email, name, password FROM user where email = ? and auth is not null";
+        $sql = "SELECT id, email, name, password, auth FROM user where email = ? and auth is not null";
         
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Check if username exists, if yes then verify password
                 if ($stmt->num_rows == 1) {
                     // Bind result variables
-                    $stmt->bind_result($id, $email, $name, $hashed_password);
+                    $stmt->bind_result($id, $email, $name, $hashed_password, $auth);
                     if ($stmt->fetch()) {
                         if (password_verify($password, $hashed_password)) {
                             // Password is correct, so start a new session                            
@@ -66,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["email"] = $username;                           
                             $_SESSION["name"] = $name;
                             $_SESSION["_token"] = $token;
+                            $_SESSION["auth"] = $auth;
                             
                             
                             // Redirect user to welcome page

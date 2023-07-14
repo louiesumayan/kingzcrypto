@@ -102,25 +102,29 @@
                 <a href="/ads"><img src="/assets/img/speaker.svg">Ads</a>
             </li>
             <li>
-                <a href="/boosts"><img src="/assets/img/boosticon.svg">Boosts</a>
+                <a href="/boosts.php"><img src="/assets/img/boosticon.svg">Boosts</a>
             </li>
             <?php if(!isset($_SESSION["name"])){ ?>
             <li>
-                <a href="/login">
+                <a href="/login.php">
                     <i class="fas fa-sign-in-alt"></i>Login
                 </a>
             </li>
             <li>
-                <a href="/register">
+                <a href="/register.php">
                     <i class="fas fa-user-plus"></i>Register
                 </a>
             </li>
-            <?php }else{ ?>
+            <?php }else{ 
+                
+                if($_SESSION['auth'] == 'admin'){
+                ?>                
                 <li>
                     <a href="/dashboard/user.php">
                         <i class="fas fa-users"></i>User Manager
                     </a>
                 </li>
+                <?php } ?>
                 <li>
                     <form action="" method="" class="logout">
                         <input type="hidden" name="_token" value="desmw2L6is8I6dgp0xRGAcTYHXgBBRUuhAO1yGOy">                   

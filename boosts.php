@@ -75,25 +75,25 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                     <h2>1. Select Packages</h2>
                     <div class="boost-packages">
                         <div class="columns is-multiline is-mobile">
-                                                            <div class="column is-4-tablet is-6-mobile">
+                                <div class="column is-4-tablet is-6-mobile">
                                     <div class="boost-package" data-id="1" data-name="1 Boost" data-boosts="1" data-bonus="0" data-total="1" data-price="10">
                                         <div class="header">
                                             <p><span class="tag">x 1</span> Boost</p> <i class="fa fa-check-circle"></i>
                                         </div>
-                                        <div class="inner" style="background-image: url('https://storage.googleapis.com/coinsniper-assets/images/lhLkB7OXVEwyfUh5ZEcwEzIfG563f9j8EHdaMjIs.png')">
-                                            <img src="https://storage.googleapis.com/coinsniper-assets/images/V29rZ5DUXx9FIR2hgVxxrfOBl0vchnp4FVUUxldu.gif" alt="1 Boost" data-id="1">
+                                        <div class="inner" style="background-image: url('./assets/img/boosts_back.png')">
+                                            <img src="./assets/img/rocket1.gif" alt="1 Boost" data-id="1">
                                             <p><span class="tag gray">x1</span>+0 Bonus</p>
                                             <p class="price">$ 10</p>
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="column is-4-tablet is-6-mobile">
+                                <div class="column is-4-tablet is-6-mobile">
                                     <div class="boost-package" data-id="2" data-name="6 Boosts" data-boosts="5" data-bonus="1" data-total="6" data-price="50">
                                         <div class="header">
                                             <p><span class="tag">x 6</span> Boosts</p> <i class="fa fa-check-circle"></i>
                                         </div>
-                                        <div class="inner" style="background-image: url('https://storage.googleapis.com/coinsniper-assets/images/lhLkB7OXVEwyfUh5ZEcwEzIfG563f9j8EHdaMjIs.png')">
-                                            <img src="https://storage.googleapis.com/coinsniper-assets/images/Y7MLidWJkaoa9uI0ZO9NL1EDjJ9QkWuvT398lEVE.png" alt="6 Boosts" data-id="2">
+                                        <div class="inner" style="background-image: url('./assets/img/boosts_back.png')">
+                                            <img src="./assets/img/rocket2.png" alt="6 Boosts" data-id="2">
                                             <p><span class="tag gray">x5</span>+1 Bonus</p>
                                             <p class="price">$ 50</p>
                                         </div>
@@ -104,8 +104,8 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                                         <div class="header">
                                             <p><span class="tag">x 12</span> Boosts</p> <i class="fa fa-check-circle"></i>
                                         </div>
-                                        <div class="inner" style="background-image: url('https://storage.googleapis.com/coinsniper-assets/images/lhLkB7OXVEwyfUh5ZEcwEzIfG563f9j8EHdaMjIs.png')">
-                                            <img src="https://storage.googleapis.com/coinsniper-assets/images/y1zrc5jcr8JNmm3eM9TLaYYTocc3PyvYihEqxwVZ.png" alt="12 Boosts" data-id="3">
+                                        <div class="inner" style="background-image: url('./assets/img/boosts_back.png')">
+                                            <img src="./assets/img/rocket3.png" alt="12 Boosts" data-id="3">
                                             <p><span class="tag gray">x10</span>+2 Bonus</p>
                                             <p class="price">$ 100</p>
                                         </div>
@@ -116,8 +116,8 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                                         <div class="header">
                                             <p><span class="tag">x 30</span> Boosts</p> <i class="fa fa-check-circle"></i>
                                         </div>
-                                        <div class="inner" style="background-image: url('https://storage.googleapis.com/coinsniper-assets/images/lhLkB7OXVEwyfUh5ZEcwEzIfG563f9j8EHdaMjIs.png')">
-                                            <img src="https://storage.googleapis.com/coinsniper-assets/images/hZyfbmdPAevn3fcnO3qG9ZICBzHrJjdunyEaKpLw.png" alt="30 Boosts" data-id="4">
+                                        <div class="inner" style="background-image: url('./assets/img/boosts_back.png')">
+                                            <img src="./assets/img/rocket4.png" alt="30 Boosts" data-id="4">
                                             <p><span class="tag gray">x25</span>+5 Bonus</p>
                                             <p class="price">$ 250</p>
                                         </div>
@@ -128,8 +128,8 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                                         <div class="header">
                                             <p><span class="tag">x 65</span> Boosts</p> <i class="fa fa-check-circle"></i>
                                         </div>
-                                        <div class="inner" style="background-image: url('https://storage.googleapis.com/coinsniper-assets/images/lhLkB7OXVEwyfUh5ZEcwEzIfG563f9j8EHdaMjIs.png')">
-                                            <img src="https://storage.googleapis.com/coinsniper-assets/images/ZBngWxm3XqTgePOXrqX8IXW5YhtFNwYbX0dm5b8c.png" alt="65 Boosts" data-id="5">
+                                        <div class="inner" style="background-image: url('./assets/img/boosts_back.png')">
+                                            <img src="./assets/img/rocket5.png" alt="65 Boosts" data-id="5">
                                             <p><span class="tag gray">x50</span>+15 Bonus</p>
                                             <p class="price">$ 500</p>
                                         </div>
@@ -140,8 +140,8 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                                         <div class="header">
                                             <p><span class="tag">x 140</span> Boosts</p> <i class="fa fa-check-circle"></i>
                                         </div>
-                                        <div class="inner" style="background-image: url('https://storage.googleapis.com/coinsniper-assets/images/lhLkB7OXVEwyfUh5ZEcwEzIfG563f9j8EHdaMjIs.png')">
-                                            <img src="https://storage.googleapis.com/coinsniper-assets/images/TZb9T35MLpU3S8DeqPlFfAKXMr5PzcYCmpi01BXG.png" alt="140 Boosts" data-id="6">
+                                        <div class="inner" style="background-image: url('./assets/img/boosts_back.png')">
+                                            <img src="./assets/img/rocket6.png" alt="140 Boosts" data-id="6">
                                             <p><span class="tag gray">x100</span>+40 Bonus</p>
                                             <p class="price">$ 1,000</p>
                                         </div>
@@ -152,8 +152,8 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                                         <div class="header">
                                             <p><span class="tag">x 350</span> Boosts</p> <i class="fa fa-check-circle"></i>
                                         </div>
-                                        <div class="inner" style="background-image: url('https://storage.googleapis.com/coinsniper-assets/images/lhLkB7OXVEwyfUh5ZEcwEzIfG563f9j8EHdaMjIs.png')">
-                                            <img src="https://storage.googleapis.com/coinsniper-assets/images/vejAjmZaQ7MrUTeAq6ty5hdoAu0vbX0kJXISouj2.png" alt="350 Boosts" data-id="7">
+                                        <div class="inner" style="background-image: url('./assets/img/boosts_back.png')">
+                                            <img src="./assets/img/rocket7.png" alt="350 Boosts" data-id="7">
                                             <p><span class="tag gray">x250</span>+100 Bonus</p>
                                             <p class="price">$ 2,500</p>
                                         </div>
@@ -164,8 +164,8 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                                         <div class="header">
                                             <p><span class="tag">x 750</span> Boosts</p> <i class="fa fa-check-circle"></i>
                                         </div>
-                                        <div class="inner" style="background-image: url('https://storage.googleapis.com/coinsniper-assets/images/lhLkB7OXVEwyfUh5ZEcwEzIfG563f9j8EHdaMjIs.png')">
-                                            <img src="https://storage.googleapis.com/coinsniper-assets/images/6KSFloyW3gIwdy21XFOZdrfHADUl1seWvhMfc4My.png" alt="750 Boosts" data-id="8">
+                                        <div class="inner" style="background-image: url('./assets/img/boosts_back.png')">
+                                            <img src="./assets/img/rocket8.png" alt="750 Boosts" data-id="8">
                                             <p><span class="tag gray">x500</span>+250 Bonus</p>
                                             <p class="price">$ 5,000</p>
                                         </div>
@@ -176,8 +176,8 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                                         <div class="header">
                                             <p><span class="tag">x 1600</span> Boosts</p> <i class="fa fa-check-circle"></i>
                                         </div>
-                                        <div class="inner" style="background-image: url('https://storage.googleapis.com/coinsniper-assets/images/rUqc8rMM4eF5eDIz2JRjqyR4aHJgYnTdrkaaPGA8.png')">
-                                            <img src="https://storage.googleapis.com/coinsniper-assets/images/E4RdPuHHh2yjgFqI9vgWkDvzoGABzXzzMhvC9B1W.gif" alt="1600 Boosts" data-id="9">
+                                        <div class="inner" style="background-image: url('./assets/img/boosts_back.png')">
+                                            <img src="./assets/img/rocket9.gif" alt="1600 Boosts" data-id="9">
                                             <p><span class="tag gray">x1000</span>+600 Bonus</p>
                                             <p class="price">$ 10,000</p>
                                         </div>
@@ -286,5 +286,127 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
   <?php include_once "./inc/footer.php"; ?>
   <script  src="./assets/jquery-3.7.0.min.js" ></script>
   <script defer src="./assets/script/main.js"></script>
+
+  <script>
+        $(document).ready(function () {
+            let cart = [];
+
+            function addToCart(packageId) {
+                packageId = parseInt(packageId)
+
+                for(const id in cart) {
+                    let _packageId = cart[id]
+                    if(_packageId == packageId) {
+                        return updateCartHtml()
+                    }
+                }
+
+                cart.push(packageId)
+                cart.sort()
+
+                $('.boost-package[data-id=' + packageId + ']').addClass('is-active')
+
+                updateCartHtml()
+            }
+
+            function removeFromCart(packageId) {
+                for(const id in cart) {
+                    let _packageId = cart[id]
+                    if(_packageId == packageId) {
+                        cart.splice(id, 1)
+                    }
+                }
+
+                $('.boost-package[data-id=' + packageId + ']').removeClass('is-active')
+
+                updateCartHtml()
+            }
+
+            function updateInputField() {
+                let serialized = cart.join(',')
+                console.log(serialized)
+                $('.confirm-order [name=packages]').val(serialized)
+
+                console.log($('.confirm-order [name=packages]').val())
+            }
+
+            function updateCartHtml() {
+                console.log(cart)
+                $('.confirm-order .boost-packages tbody').html('')
+
+                for (const id in cart) {
+                    let packageId = cart[id]
+                    let element = $('.boost-package[data-id=' + packageId + ']')
+                    let packageName = $(element).data('name')
+                    let packageBoosts = $(element).data('boosts')
+                    let packageBonusBoosts = $(element).data('bonus')
+                    let packageTotalBoosts = $(element).data('total')
+                    let packagePrice = $(element).data('price')
+
+                    let insert = "<tr>" +
+                        `<td><b><span class="tag gray">x${packageBoosts}</span> Boosts</b> <br><span class="small">+${packageBonusBoosts} Bonus</span></td>` +
+                        `<td><span class="tag">x${packageTotalBoosts}</span></td>` +
+                        `<td>$ ${packagePrice}</td>` +
+                        `<td><img class="remove-package" src="/assets/img/payments/close.svg" data-id="${packageId}"></td>` +
+                        "</tr>"
+
+                    $('.confirm-order .boost-packages tbody').append(insert)
+                }
+
+                if (cart.length == 0) {
+                    $('.confirm-order .boost-packages tbody').html('<tr><td class="has-text-centered" colspan="6">Please select Boost package</td></tr>')
+                    $('.confirm-order .button').attr('disabled', true)
+                } else {
+                    $('.confirm-order .button').attr('disabled', false)
+                }
+
+                updateTotals()
+                updateInputField()
+            }
+
+            function updateTotals() {
+                let totalBoosts = 0
+                let totalPrice = 0
+
+                for(const id in cart) {
+                    let packageId = cart[id]
+
+                    totalBoosts += getBoosts(packageId)
+                    totalPrice += getPrice(packageId)
+                }
+
+                $('.order-summary .total-boosts span.tag').html('x' + totalBoosts)
+                $('.order-summary .total-price').html('$ ' + totalPrice.toLocaleString('en-US'))
+                $('.confirm-order .has-button .boost-amount').html(totalBoosts)
+                $('.confirm-order .header .count').html(cart.length == 0 ? 'No' : cart.length)
+                if(cart.length > 1) {
+                    $('.confirm-order .header span.s').removeClass('is-hidden')
+                } else {
+                    $('.confirm-order .header span.s').addClass('is-hidden')
+                }
+                console.log('Totals:', totalBoosts, totalPrice)
+            }
+
+            function getBoosts(packageId) {
+                return parseInt($('.boost-package[data-id=' + packageId + ']').data('total'))
+            }
+            function getPrice(packageId) {
+                return parseInt($('.boost-package[data-id=' + packageId + ']').data('price'))
+            }
+
+            $('.boost-package').click(function(){
+                let packageId = $(this).data('id')
+
+                if(cart.indexOf(packageId) == -1)
+                    addToCart(packageId)
+                else
+                    removeFromCart(packageId)
+            })
+
+            $(document).on('click', '.remove-package', function(e){
+                removeFromCart($(e.target).data('id'))
+            })
+        })
+    </script>
   </body>
 </html>

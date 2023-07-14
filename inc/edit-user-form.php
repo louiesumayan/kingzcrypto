@@ -1,15 +1,4 @@
-<section class="register">
-    <div class="container">
-        <div class="columns">
-            <div class="column">
-                <div class="inner">
-                    <div class="top">
-                        <h1>Edit User</h1>
-                       
-                        <p class="help is-danger"></p>
-                    </div>
-
-                    <?php
+<?php
                     if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         if(isset($_GET['id'])){
                             $id = $mysqli -> real_escape_string($_GET['id']);
@@ -53,7 +42,7 @@
                                 if(executeQueryV2($query, $mysqli)){
                                     $notif = "<div class='container'>
                                                 <div class='message promoted-boost-message' style='margin-top: 1rem;'>
-                                                    <i class='fas fa-info-circle'></i> The promoted section is now ranked by Boosts! <a target='_blank' href='https://coinsniper.net/blog/new-boost-system'>Click here to learn more.</a>
+                                                    <i class='fas fa-info-circle'></i> User Profile Update Successfully
                                                 </div>
                                             </div>";
                                     
@@ -62,8 +51,22 @@
                         }
                     }
 
+                    if(isset($notif)){ echo $notif; };
+?>
+
+
+<section class="register">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="inner">
+                    <div class="top">
+                        <h1>Edit User</h1>
+                       
+                        <p class="help is-danger"></p>
+                    </div>
+
                     
-                    ?>
 
                     <form method="POST" action="/dashboard/edit-user.php">
                         <input type="hidden" name="_token" value="<?php echo  $_SESSION["_token"]; ?>">

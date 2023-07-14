@@ -7,6 +7,43 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
     header("location: /login.php");
     exit;
 }
+
+/*
+http://localhost/submit.php
+?_token=1fc239ce2728a683745f819a7db0e454
+&_token=1xq7yfiPysuC7SgZoIGc0HhnBOrxW5UyFSsd4zdz
+&image_url=
+&image_url=upload/coin/abll.png
+&photo=
+&name=t1
+&symbol=t1
+&network=bsc
+&presale=No
+&fairlaunch=No
+&softcap=
+&cap_network=eth
+&hardcap=
+&presale_start_day=
+&presale_start_month=
+&presale_start_year=
+&presale_end_day=
+&presale_end_month=
+&presale_end_year=
+&bsc_contract_address=dasdasdasd
+&description=sdasdasdsad
+&launch_date=No
+&custom_dex_link=dsadasd
+&custom_swap_link=dasdsad
+&website_link=sadasd
+&telegram_link=dsad
+&twitter_link=sadasd
+&discord_link=asdasd
+&whitepaper_link=dsad
+&contact_email=sadsa
+&contact_telegram=das
+&terms=on
+
+*/
  
 ?>
 
@@ -18,6 +55,9 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
     <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon" />
     <script  src="https://kit.fontawesome.com/b7c265b79a.js"      crossorigin="anonymous"    ></script>    
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+   
    
     <title>KINGZ CRYPTO</title>
   </head>
@@ -35,22 +75,21 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
                         Please fill out this form carefully to add a new coin to <a href="/">CoinSniper</a>. After submission, your
                         coin will be visible on the <a href="/listings/new" target="_blank">New Listings</a> page.
                         Get 500 votes to be officially listed on <a href="/">CoinSniper</a>.</p>
-
+                       
                     
-                    
-                    <form id="coins-form" action="/submit" method="POST">
-                        <input type="hidden" name="_token" value="1xq7yfiPysuC7SgZoIGc0HhnBOrxW5UyFSsd4zdz">
+                    <form id="coins-form" action="/submit.php" method="GET">
+                        <input type="hidden" name="_token" value="<?php echo $_SESSION['_token']; ?>">
                         <div class="step-1">
                             <div class="image-upload">
                                 <input type="hidden" name="_token" value="1xq7yfiPysuC7SgZoIGc0HhnBOrxW5UyFSsd4zdz">
                                 <input type="hidden" name="image_url" value="">
                                 <div class="has-hidden-input">
-                                    <input name="photo" type="file" class="is-hidden">
+                                    <input id="myId" name="photo" type="file" class="is-hidden">
                                 </div>
                                 <div class="field">
                                     <label class="label">Logo Upload*</label>
                                 </div>
-                                <div class="has-image is-new" data-placeholder="https://coinsniper.net/assets/img/placeholder.jpg">
+                                <div class="has-image" data-placeholder="https://coinsniper.net/assets/img/placeholder.jpg">
                                                                         <div class="logo-placeholder">
                                         <div class="has-text-centered">
                                             <svg width="43" height="42" viewBox="0 0 43 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -672,5 +711,77 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
   <?php include_once "./inc/footer.php"; ?>
   <script  src="./assets/jquery-3.7.0.min.js" ></script>
   <script defer src="./assets/script/main.js"></script>
+  <script>
+   // Image upload
+   $('.image-upload .has-image:not(.cropping)').click(function () {
+                $('.image-upload .has-image').removeClass('is-new')
+                if (!$('.image-upload .has-image').hasClass('cropping'))
+                    $('[name=photo]').click()
+            })
+
+            let error = $('.image-upload p.error')
+            let message = $('.image-upload p.message')
+            $('.has-hidden-input').on('change', '[name=photo]', function () {
+                $(error).html('').hide()
+                $(message).html('').hide()
+
+                let file = this.files[0]
+                console.log(file)
+                if (file.size > 300000) {
+                    $(error).html('File size cannot exceed 300kb').show()
+                    return;
+                }
+
+                if(file.type != "image/png" && file.type != "image/jpg" && file.type != "image/jpeg") {
+                    $(error).html('File must be .png or .jpg').show()
+                    return;
+                }
+
+                var url = URL.createObjectURL(file);
+                var img = new Image;
+
+                img.onload = function() {
+                    if(img.width > 200 || img.height > 200) {
+                        $(error).html('File must be max 200x200 pixels').show()
+                        return;
+                    }
+                    if(img.width != img.height) {
+                        $(error).html('Image must be square (e.g. 150x150 pixels)').show()
+                        return;
+                    }
+
+                    var formData = new FormData();
+                    formData.append('_token', $('.image-upload [name=_token]').val())
+                    formData.append('file', file)
+                    //console.log(formData)
+
+                    $.ajax({
+                        url: '/upload/index.php',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false
+                    }).done(function (response) {
+                        //console.log("Success: Files sent!", response);
+
+                        $('[name=image_url]').val(response)
+                        $('.image-upload .save').addClass('is-hidden')
+                        $('.image-upload .has-image img.empty').attr('src', response).removeClass('is-hidden')
+                        $('.image-upload .has-hidden-input').html('<input name="photo" type="file" class="is-hidden" />')
+
+                    }).fail(function () {
+                        console.log("An error occurred, the files couldn't be sent!");
+                    });
+                }
+
+                img.src = url;
+            })
+
+            $('.image-upload .remove').click(function () {
+                $(this).addClass('is-hidden')
+                $('.image-upload img').attr('src', $('.image-upload .has-image').data('placeholder'))
+                $('.image-upload [name=photo_url]').val(null)
+            })
+  </script>
   </body>
 </html>
