@@ -11670,9 +11670,14 @@ a.button.is-primary,a.button.is-secondary,button.button.is-primary,button.button
     padding: 10px 25px
 }
 
-input[type=submit].is-primary,a.button.is-primary,button.button.is-primary {
+input[type=submit].is-primary,a.button.is-primary,button.button.is-primary {    
     background-color: #00aa72;
     box-shadow: 5px 4px 12px rgba(0,166,118,.24)
+}
+
+.btn_block {
+    display: block;
+    width: 100%;
 }
 
 a.button.is-secondary,button.button.is-secondary {

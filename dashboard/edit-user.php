@@ -38,7 +38,7 @@ require_once ABSPATH."inc/db.php"
 
   <br>
   <!-- part 1 -->
-    <?php include_once ABSPATH."/inc/users.php"; ?> 
+    <?php include_once ABSPATH."/inc/edit-user-form.php"; ?> 
 
 
         

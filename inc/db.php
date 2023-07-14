@@ -27,10 +27,9 @@ if($mysqli === false){
 
 
 
-
 /*
 // Example usage
-$query = "SELECT * FROM your_table WHERE column = :value";
+$query = "SELECT * FROM user";
 $params = [
     ':value' => 'some_value'
 ];
@@ -42,6 +41,7 @@ foreach ($results as $row) {
     echo $row['column_name'] . "<br>";
 }
 */
+
 // Function to execute a query and return the result set
 function executeQuery($query, $params = []) {
     global $username, $password, $database;
@@ -71,6 +71,45 @@ function executeQuery($query, $params = []) {
     }
 }
 
+function executeQueryv0($query, $params = []) {
+    global $username, $password, $database;
+    try {
+        // Create a new PDO instance
+        $dsn = "mysql:host=srv1041.hstgr.io;dbname=$database;charset=utf8mb4";
+        $options = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ];
+        $pdo = new PDO($dsn, $username, $password, $options);
+
+        // Prepare and execute the query
+        $statement = $pdo->prepare($query);
+        $statement->execute($params);
+
+        // Check if the query was an update or insert
+        $isUpdateOrInsert = $statement->rowCount() > 0;
+
+        // If it was an update or insert, return the number of affected rows
+        if ($isUpdateOrInsert) {
+            $affectedRows = $statement->rowCount();
+            $pdo = null;
+            return $affectedRows;
+        }
+
+        // Fetch the results as an associative array for select queries
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // Close the connection
+        $pdo = null;
+
+        // Return the results
+        return $results;
+    } catch (PDOException $e) {
+        die("Query failed: " . $e->getMessage());
+    }
+}
+
+
 
 
 function executeQueryV2($query, $mysqli) {
@@ -94,6 +133,47 @@ function executeQueryV2($query, $mysqli) {
         die("Error executing the query: " . $mysqli->error);
     }
 }
+
+function executeQueryV3($query, $mysqli, $params) {
+    $statement = $mysqli->prepare($query);
+    
+    if (!$statement) {
+        die("Error preparing the query: " . $mysqli->error);
+    }
+    
+    // Bind the parameters
+    $bindParams = [];
+    $bindParams[] = implode('', array_keys($params)); // Data types of the parameters
+    
+    foreach ($params as $param => $value) {
+        $bindParams[] = &$params[$param];
+    }
+    
+    call_user_func_array([$statement, 'bind_param'], $bindParams);
+    
+    $result = $statement->execute();
+    
+    if ($result) {
+        if ($statement->result_metadata()) {
+            $data = [];
+            
+            $statementResult = $statement->get_result();
+            
+            while ($row = $statementResult->fetch_assoc()) {
+                $data[] = $row;
+            }
+            
+            $statementResult->free();
+            return $data;
+        } else {
+            // Query executed successfully, but no data returned (e.g., an UPDATE or INSERT query)
+            return true;
+        }
+    } else {
+        die("Error executing the query: " . $mysqli->error);
+    }
+}
+
 
 
  

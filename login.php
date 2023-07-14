@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement
         //$sql = "SELECT id, username, urole, password, name FROM users WHERE username = ? and urole is not null";
-        $sql = "SELECT id, email, name, password FROM user where email = ?";
+        $sql = "SELECT id, email, name, password FROM user where email = ? and auth is not null";
         
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -60,12 +60,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Password is correct, so start a new session                            
                             
                             // Store data in session variables
+                            $token = bin2hex(random_bytes(16));
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["email"] = $username;                           
                             $_SESSION["name"] = $name;
+                            $_SESSION["_token"] = $token;
                             
-                          
                             
                             // Redirect user to welcome page
                             header("location: /");
