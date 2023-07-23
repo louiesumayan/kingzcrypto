@@ -1,8 +1,14 @@
 <?php
 // Connection parameters
+/*
 $localhost = "srv1041.hstgr.io";
 $username = "u266886950_coinslot";
 $password = "2023Piso!";
+$database = "u266886950_coins";
+*/
+$localhost = "localhost";
+$username = "root";
+$password = "";
 $database = "u266886950_coins";
 
 
@@ -175,6 +181,126 @@ function executeQueryV3($query, $mysqli, $params) {
 }
 
 
+function messagebox($message){
+    echo "<div class='container'>
+                <div class='message promoted-boost-message' style='margin-top: 1rem;'>
+                    <i class='fas fa-info-circle'></i> $message
+                </div>
+            </div>";
+}
+
+function genID($length = 10) {
+    $characters = '0123456789ABCDEF';
+    $randomString = '#';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
+}
+
+function formatDateTime($dateTimeString)
+{
+    $timestamp = strtotime($dateTimeString);
+    $formattedDate = date('d M Y - g A', $timestamp);
+    return $formattedDate;
+}
+
+
+
+function genAdsid() {
+    $uniqueString = substr(uniqid(), -8);
+    return strtoupper($uniqueString);
+}
+
+
+function checkIfVotedByCoin($cid, $uid){
+    global $mysqli;
+    $sql = "SELECT * FROM voteduser WHERE coin_id = '$cid' and user_id = $uid";
+    $res = executeQueryV2($sql, $mysqli);
+    if (count($res) != 0 ){    
+        //echo count($res);    
+        return true;
+    }
+
+    
+}
+
+function saveVoted($cid, $uid){
+    global $mysqli;
+    $sql = "INSERT INTO `voteduser` (`coin_id`,`user_id`) VALUES ('$cid', '$uid')";
+    if(executeQueryV2($sql, $mysqli)){
+        return true;
+    }
+}
+
+
+function coinVote($id, $user){
+    global $mysqli;
+    $cvote = "SELECT vote FROM coins where id = $id";
+    $vote = executeQueryV2($cvote, $mysqli);
+    if(!empty($vote)){
+        //if vote is null
+        if($vote[0]['vote'] == ''){
+            $vote = 1;
+        }else{
+            $vote = intval($vote[0]['vote']) + 1;
+        }
+        
+    }
+    if(checkIfVotedByCoin($id, $user) != true ){
+       
+        
+        $inVote = "UPDATE `coins` SET `vote` = '$vote' WHERE `id` = '$id'";    
+        if(executeQueryV2($inVote, $mysqli)){
+            if(saveVoted($id, $user)){
+                header('Location: /');
+                exit();
+            }
+           
+        }
+        
+    }
+}
+
+
+function getBoostsByID($id){
+    global $mysqli;
+    $sql = "SELECT * FROM buy_boosts WHERE id = '$id'";
+    $res = executeQueryV2($sql, $mysqli);
+    if(!empty($res)){
+        return $res[0]['totalboosts'];
+    }else{
+        return 0;
+    }
+    
+}
+
+function updateBoostsUserByID($id, $boosts, $operation){
+    global $mysqli;
+    $newboosts = intval($boosts);
+    if($operation  == 'ADD'){
+        //$operation  = "ADD"
+        $sql = "UPDATE `user` SET `boosts` = IFNULL(`boosts`, 0) + $newboosts WHERE `id` = $id;";
+    }
+    if($operation  == 'MINUS'){
+        //$operation  = "ADD"
+        $sql = "UPDATE `user` SET `boosts` = IFNULL(`boosts`, 0) - $newboosts WHERE `id` = $id;";
+    }   
+    $res = executeQueryV2($sql, $mysqli);
+    if(!empty($res)){
+        return $res;
+    }    
+}
+
+function updateCoinBoost($coin, $boosts){
+    global $mysqli;
+    //update coin boost table with new total coins and time stamp.
+    $sql = "UPDATE coins SET boosts = IFNULL(`boosts`, 0) + $boosts WHERE symbol = '$coin'";
+    $res1 = executeQueryV2($sql,$mysqli);
+    if($res1){
+        return true;
+    }
+}
 
  
 

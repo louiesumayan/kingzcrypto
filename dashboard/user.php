@@ -3,7 +3,7 @@
 session_start();
 
 define( 'ABSPATH', dirname( __FILE__, 2 ) . '/' );
-print_r($_SESSION);
+
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) ){
@@ -37,6 +37,7 @@ require_once ABSPATH."inc/db.php"
   </head>
   <body>
   <?php  include_once ABSPATH."inc/nav2.php";  ?>
+  <?php  include_once ABSPATH."inc/search.php";  ?>
 
 
   <br>

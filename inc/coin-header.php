@@ -1,6 +1,6 @@
 <section class="listing">
    <div class="container">
-      <div class="message error with-icon">
+      <div class="message error with-icon is-hidden">
          <img src="/assets/img/warning.svg" alt="Warning">
          <div>
             Be careful when investing in presales as they have no history or known smart contract. For tips on
@@ -18,18 +18,12 @@
                   <svg width="4" height="9" viewBox="0 0 4 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path d="M3.8848 4.82937C3.92033 4.79267 3.94938 4.74356 3.96945 4.68628C3.98951 4.629 4 4.56525 4 4.50054C4 4.43583 3.98951 4.37209 3.96945 4.3148C3.94938 4.25752 3.92033 4.20842 3.8848 4.17172L0.418371 0.571434C0.378389 0.529761 0.331559 0.505323 0.282968 0.500775C0.234378 0.496227 0.185886 0.511743 0.142762 0.545638C0.0996367 0.579533 0.0635282 0.630509 0.0383592 0.693029C0.0131902 0.75555 -7.66885e-05 0.827222 -1.64374e-09 0.90026L3.13103e-07 8.10082C0.000200945 8.17369 0.0136385 8.2451 0.0388678 8.30737C0.064097 8.36964 0.100164 8.42041 0.143189 8.45422C0.186214 8.48804 0.23457 8.50362 0.283056 8.49929C0.331542 8.49496 0.378324 8.47088 0.418371 8.42965L3.8848 4.82937Z" fill="#4F596D"></path>
                   </svg>
-               </li>
-               <li>
-                  <a href="/">Top Coins</a>
-                  <svg width="4" height="9" viewBox="0 0 4 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                     <path d="M3.8848 4.82937C3.92033 4.79267 3.94938 4.74356 3.96945 4.68628C3.98951 4.629 4 4.56525 4 4.50054C4 4.43583 3.98951 4.37209 3.96945 4.3148C3.94938 4.25752 3.92033 4.20842 3.8848 4.17172L0.418371 0.571434C0.378389 0.529761 0.331559 0.505323 0.282968 0.500775C0.234378 0.496227 0.185886 0.511743 0.142762 0.545638C0.0996367 0.579533 0.0635282 0.630509 0.0383592 0.693029C0.0131902 0.75555 -7.66885e-05 0.827222 -1.64374e-09 0.90026L3.13103e-07 8.10082C0.000200945 8.17369 0.0136385 8.2451 0.0388678 8.30737C0.064097 8.36964 0.100164 8.42041 0.143189 8.45422C0.186214 8.48804 0.23457 8.50362 0.283056 8.49929C0.331542 8.49496 0.378324 8.47088 0.418371 8.42965L3.8848 4.82937Z" fill="#4F596D"></path>
-                  </svg>
-               </li>
-               <li>Hollywood X PEPE</li>
+               </li>              
+               <li><?php if (isset($res[0])){ echo $res[0]['name']; } ?></li>
             </ul>
          </div>
          <div class="correct-info">
-            <a class="update" href="/update-form?id=47851"><img src="/assets/img/update-project.svg">Update Project</a>
+            <a class="update is-hidden" href="/update-form?id=47851"><img src="/assets/img/update-project.svg">Update Project</a>
          </div>
       </div>
    </div>
@@ -38,15 +32,15 @@
          <div class="panel primary">
             <div class="main-info">
                <div class="left">
-                  <img class="coin-img" src="https://storage.googleapis.com/coinsniper-assets/images/aawh0xuRD9LQeqJJA2ZlMhD8QAuZEkJps52bz6Sw.png" alt="">
+                  <img class="coin-img" src="<?php if (isset($res[0])){ echo $res[0]['image_url']; } ?>" alt="">
                   <div class="header">
                      <div class="coin-header-info">
-                        <img class="coin-mobile-img" src="https://storage.googleapis.com/coinsniper-assets/images/aawh0xuRD9LQeqJJA2ZlMhD8QAuZEkJps52bz6Sw.png" alt="">
+                        <img class="coin-mobile-img" src="<?php if (isset($res[0])){ echo $res[0]['image_url']; } ?>" alt="">
                         <div class="coin-info">
                            <div class="name">
                               <div class="coin-name">
-                                 <h1>Hollywood X PEPE</h1>
-                                 <span>HXPE</span>
+                                 <h1><?php if (isset($res[0])){ echo $res[0]['name']; } ?></h1>
+                                 <span id="coin"><?php if (isset($res[0])){ echo $res[0]['symbol']; } ?></span>
                               </div>
                            </div>
                            <div class="badges">
@@ -92,7 +86,7 @@
                            <img src="/assets/img/eth.png">
                            <span>ETH:</span>
                            <div class="contract can-copy" data-copy="0xf3db6e766d7e4034f5509266ca6523896e57d315">
-                              <div class="address">0xf3db...d315</div>
+                              <div class="address"><?php if (isset($res[0])){ echo $res[0]['bsc_contract_address']; } ?></div>
                               <div class="copy">
                                  <img src="/assets/img/copy.svg" alt="">
                                  <span class="copied is-hidden">copied!</span>
@@ -108,7 +102,7 @@
                                     <path d="M14.7 0.363861C14.8704 0.301722 15.0615 0.334945 15.1994 0.449994C15.3372 0.565043 15.3999 0.744076 15.3623 0.916342C14.8666 3.20194 13.5457 9.56163 13.0012 12.0742C12.9498 12.3099 12.7794 12.5043 12.5476 12.591C12.3157 12.6772 12.0557 12.6421 11.8539 12.5018C10.5844 11.6141 8.34611 10.0027 8.34611 10.0027C8.34611 10.0027 7.16808 11.0948 6.40612 11.8011C6.27139 11.926 6.0784 11.9746 5.89793 11.9284C5.71684 11.8817 5.57961 11.7463 5.52008 11.5741C5.04574 10.2021 4.1359 7.50428 4.1359 7.50428C4.1359 7.50428 2.18901 6.89827 0.705815 6.46269C0.490887 6.39932 0.341753 6.21044 0.334234 5.99265C0.327341 5.77547 0.463943 5.57736 0.673858 5.50107C3.98112 4.29952 12.0726 1.31871 14.7 0.363861ZM12.4078 2.49011C9.72215 4.17401 4.95488 7.16344 4.95488 7.16344L6.00696 10.5706L6.24069 8.41298C6.24069 8.41298 10.3055 4.81324 12.6227 2.76143C12.6904 2.70114 12.6998 2.60024 12.6434 2.52949C12.5877 2.45874 12.4849 2.44213 12.4078 2.49011Z" fill="white"></path>
                                  </svg>
                                  <div class="counter">
-                                    25k
+                                    -
                                  </div>
                               </a>
                            </div>
@@ -133,7 +127,7 @@
                               </a>
                            </div>
                            <div class="social-icon">
-                              <a href="" target="_blank">
+                              <a href="<?php if (isset($res[0])){ echo $res[0]['website_link']; } ?>" target="_blank">
                                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10.6554 4.14355C9.80005 4.32214 8.88371 4.42786 7.93945 4.453V7.06092H11.0304C11.0019 6.03372 10.8738 5.04615 10.6554 4.14355Z" fill="white"></path>
                                     <path d="M3.09015 7.06043C3.11913 5.96407 3.25631 4.90601 3.49142 3.93485C2.7215 3.71873 2.01706 3.43933 1.40615 3.10352C0.569421 4.25812 0.0824802 5.62099 0 7.06043H3.09015Z" fill="white"></path>

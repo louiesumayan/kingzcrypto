@@ -75,7 +75,7 @@ const ovly = document.querySelector('.overlay');
   ovly.classList.toggle('hide-ovly');
   menu.classList.toggle('hide-nav');
 })
-*/
+
 
 ovly.addEventListener('click', () => {
   ovly.classList.add('hide-ovly');
@@ -93,3 +93,5 @@ search.addEventListener('click', () => {
   search_icon.classList.toggle('hide-sm');
   search_icon.focus();
 });
+
+*/

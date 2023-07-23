@@ -8,7 +8,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 }
 
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +30,11 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
   </head>
   <body>
   <?php     include_once "./inc/nav2.php";  ?>
+  <?php  include_once "./inc/search.php";  ?>
 
+  <?php include_once "./inc/banner_top.php" ?>
   <?php include_once "./inc/main.php" ?>
+  <?php include_once "./inc/banner_down.php" ?>
     
   <?php include_once "./inc/footer.php"; ?>
    

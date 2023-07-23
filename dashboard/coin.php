@@ -10,6 +10,10 @@ if(!isset($_SESSION["loggedin"])){
   exit;
 }
 
+require_once ABSPATH."inc/db.php";
+
+
+
 
 
 ?>
@@ -34,12 +38,26 @@ if(!isset($_SESSION["loggedin"])){
   </head>
   <body>
   <?php  include_once ABSPATH."inc/nav2.php";  ?>
+  <?php  include_once ABSPATH."inc/search.php";  ?>
 
 
   <br>
   <!-- part 1 -->
+  <?php
+  if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if(isset($_GET['cid'])){
+      $id = $mysqli->real_escape_string($_GET['cid']);
+      $sql = "SELECT * FROM coins WHERE id = '$id'";
+      $res = executeQueryV2($sql, $mysqli);
+      if(!empty($res)){
+        //print_r($res);
+      }
+    }
+  }
+  ?>
   <?php include_once ABSPATH."/inc/coin-header.php"; ?> 
     <!-- part 2-->
+    
     <?php include_once ABSPATH."/inc/coin-body.php"; ?>  
 
         

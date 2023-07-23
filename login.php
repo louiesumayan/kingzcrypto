@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement
         //$sql = "SELECT id, username, urole, password, name FROM users WHERE username = ? and urole is not null";
-        $sql = "SELECT id, email, name, password, auth FROM user where email = ? and auth is not null";
+        $sql = "SELECT id, email, name, password, auth FROM user where email = ? "; //and auth is not null
         
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters

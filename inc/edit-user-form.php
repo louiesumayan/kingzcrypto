@@ -6,8 +6,10 @@
                             $params = [
                                 ':id' => $id
                             ];
+                            $sql  = "SELECT * FROM user WHERE id = $id";
     
-                            $res = executeQuery($query, $params);
+                            //$res = executeQuery($query, $params);
+                            $res = executeQueryV2($sql, $mysqli);
                             #print_r($res[0]);
     
                             if(!empty($res)){

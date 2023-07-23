@@ -7,43 +7,81 @@ if(!isset($_SESSION["loggedin"]) && !$_SESSION["loggedin"] === true){
     header("location: /login.php");
     exit;
 }
+// Include config file
+require_once "./inc/db.php";
 
-/*
-http://localhost/submit.php
-?_token=1fc239ce2728a683745f819a7db0e454
-&_token=1xq7yfiPysuC7SgZoIGc0HhnBOrxW5UyFSsd4zdz
-&image_url=
-&image_url=upload/coin/abll.png
-&photo=
-&name=t1
-&symbol=t1
-&network=bsc
-&presale=No
-&fairlaunch=No
-&softcap=
-&cap_network=eth
-&hardcap=
-&presale_start_day=
-&presale_start_month=
-&presale_start_year=
-&presale_end_day=
-&presale_end_month=
-&presale_end_year=
-&bsc_contract_address=dasdasdasd
-&description=sdasdasdsad
-&launch_date=No
-&custom_dex_link=dsadasd
-&custom_swap_link=dasdsad
-&website_link=sadasd
-&telegram_link=dsad
-&twitter_link=sadasd
-&discord_link=asdasd
-&whitepaper_link=dsad
-&contact_email=sadsa
-&contact_telegram=das
-&terms=on
 
-*/
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST['_token'])){
+        if($_POST['_token'] == $_SESSION['_token']){
+
+            //print_r($_POST);
+
+            // json_encode function 
+            //$json_pretty = json_encode($_POST, JSON_PRETTY_PRINT);
+            //echo "<pre>" . $json_pretty . "<pre/>";
+            $user = $_SESSION['id'];
+            $image_url = $mysqli -> real_escape_string($_POST['image_url']);
+            $photo = $mysqli -> real_escape_string($_POST['photo']);
+            $name = $mysqli -> real_escape_string($_POST['name']);
+            $symbol=$mysqli -> real_escape_string($_POST['symbol']);
+            $network=$mysqli -> real_escape_string($_POST['network']);
+            $presale=$mysqli -> real_escape_string($_POST['presale']);
+            $fairlaunch=$mysqli -> real_escape_string($_POST['fairlaunch']);
+            $softcap=$mysqli -> real_escape_string($_POST['softcap']);
+            $cap_network=$mysqli -> real_escape_string($_POST['cap_network']);
+            $hardcap=$mysqli -> real_escape_string($_POST['hardcap']);
+            $presale_start_day=$mysqli -> real_escape_string($_POST['presale_start_day']);
+            $presale_start_month=$mysqli -> real_escape_string($_POST['presale_start_month']);
+            $presale_start_year=$mysqli -> real_escape_string($_POST['presale_start_year']);
+            $presale_end_day = $mysqli -> real_escape_string($_POST['presale_end_day']);
+            $presale_end_month=$mysqli -> real_escape_string($_POST['presale_end_month']);
+            $presale_end_year=$mysqli -> real_escape_string($_POST['presale_end_year']);
+            $bsc_contract_address=$mysqli -> real_escape_string($_POST['bsc_contract_address']);
+            $description=$mysqli -> real_escape_string($_POST['description']);
+            $launch_date=$mysqli -> real_escape_string($_POST['launch_date']);
+            if($launch_date == 'YES'){
+                $date_created_day= $mysqli -> real_escape_string($_POST['date_created_day']);
+                $date_created_month = $mysqli -> real_escape_string($_POST['date_created_month']);
+                $date_created_year =  $mysqli -> real_escape_string($_POST['date_created_year']);
+               
+            }else{
+                $date_created_day= '';
+                $date_created_month ='';
+                $date_created_year = '';
+            }    
+            $custom_dex_link=$mysqli -> real_escape_string($_POST['custom_dex_link']);
+            $custom_swap_link=$mysqli -> real_escape_string($_POST['custom_swap_link']);
+            $website_link=$mysqli -> real_escape_string($_POST['website_link']);
+            $telegram_link=$mysqli -> real_escape_string($_POST['telegram_link']);
+            $twitter_link=$mysqli -> real_escape_string($_POST['twitter_link']);
+            $discord_link=$mysqli -> real_escape_string($_POST['discord_link']);
+            $whitepaper_link=$mysqli -> real_escape_string($_POST['whitepaper_link']);
+            $contact_email=$mysqli -> real_escape_string($_POST['contact_email']);
+            $contact_telegram=$mysqli -> real_escape_string($_POST['contact_telegram']);
+            $terms=$mysqli -> real_escape_string($_POST['terms']);
+
+
+            $query = "INSERT INTO coins (image_url, photo, name, symbol, network, presale, fairlaunch, softcap, cap_network, hardcap, presale_start_day, presale_start_month, presale_start_year, presale_end_day, presale_end_month, presale_end_year, bsc_contract_address, description, launch_date, date_created_day, date_created_month, date_created_year, custom_dex_link, custom_swap_link, website_link, telegram_link, twitter_link, discord_link, whitepaper_link, contact_email, contact_telegram, terms, user)
+            VALUES ('$image_url', '$photo', '$name', '$symbol', '$network', '$presale', '$fairlaunch', '$softcap', '$cap_network', '$hardcap', '$presale_start_day', '$presale_start_month', '$presale_start_year', '$presale_end_day', '$presale_end_month', '$presale_end_year', '$bsc_contract_address', '$description', '$launch_date', '$date_created_day', '$date_created_month', '$date_created_year', '$custom_dex_link', '$custom_swap_link', '$website_link', '$telegram_link', '$twitter_link', '$discord_link', '$whitepaper_link', '$contact_email', '$contact_telegram', '$terms', '$user')";
+            
+        
+            
+            
+            if(executeQueryV2($query, $mysqli)){
+                header('Location: /');
+                exit();
+            }
+            
+
+
+
+        }else{
+            die("Invalid Token");
+        }
+    }
+
+}
  
 ?>
 
@@ -63,6 +101,7 @@ http://localhost/submit.php
   </head>
   <body>
   <?php     include_once "./inc/nav2.php";  ?>
+  <?php  include_once "./inc/search.php";  ?>
 
   <section class="listing-form">
     <div class="container">
@@ -77,11 +116,11 @@ http://localhost/submit.php
                         Get 500 votes to be officially listed on <a href="/">CoinSniper</a>.</p>
                        
                     
-                    <form id="coins-form" action="/submit.php" method="GET">
+                    <form id="coins-form" action="/submit.php" method="POST">
                         <input type="hidden" name="_token" value="<?php echo $_SESSION['_token']; ?>">
                         <div class="step-1">
                             <div class="image-upload">
-                                <input type="hidden" name="_token" value="1xq7yfiPysuC7SgZoIGc0HhnBOrxW5UyFSsd4zdz">
+                                <input type="hidden" name="_token" value="<?php echo $_SESSION['_token']; ?>">
                                 <input type="hidden" name="image_url" value="">
                                 <div class="has-hidden-input">
                                     <input id="myId" name="photo" type="file" class="is-hidden">
@@ -191,8 +230,7 @@ http://localhost/submit.php
                                                     </div>
                                                     <div class="column">
                                                         <div class="select">
-                                                            <select name="cap_network">
-                                                                 
+                                                            <select name="cap_network">                                                                 
                                                                     <option title="ETH" value="eth">ETH</option>
                                                                  
                                                                     <option title="BNB" value="bnb">BNB</option>
@@ -216,7 +254,7 @@ http://localhost/submit.php
                                                                     <option title="USDT" value="usdt">USDT</option>
                                                                  
                                                                     <option title="BUSD" value="busd">BUSD</option>
-                                                                                                                            </select>
+                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -712,76 +750,120 @@ http://localhost/submit.php
   <script  src="./assets/jquery-3.7.0.min.js" ></script>
   <script defer src="./assets/script/main.js"></script>
   <script>
-   // Image upload
-   $('.image-upload .has-image:not(.cropping)').click(function () {
-                $('.image-upload .has-image').removeClass('is-new')
-                if (!$('.image-upload .has-image').hasClass('cropping'))
-                    $('[name=photo]').click()
-            })
+ $(document).ready(function() {
 
-            let error = $('.image-upload p.error')
-            let message = $('.image-upload p.message')
-            $('.has-hidden-input').on('change', '[name=photo]', function () {
-                $(error).html('').hide()
-                $(message).html('').hide()
+    $('#hardcap-network').html(
+        $('select[name="cap_network"] option:selected').attr('title')
+    );
 
-                let file = this.files[0]
-                console.log(file)
-                if (file.size > 300000) {
-                    $(error).html('File size cannot exceed 300kb').show()
-                    return;
-                }
+    $('select[name="cap_network"]').change(function() {
+        $('#hardcap-network').html(
+            $('select[name="cap_network"] option:selected').attr('title')
+        );
+    });
 
-                if(file.type != "image/png" && file.type != "image/jpg" && file.type != "image/jpeg") {
-                    $(error).html('File must be .png or .jpg').show()
-                    return;
-                }
+    $('[name=presale]').click(function() {
+        $('.is-fair-launch').toggleClass('is-hidden')
+        $('.presale-start-date').toggleClass('is-hidden')
+        $('.presale-end-date').toggleClass('is-hidden')
+        $('.cap-options').toggleClass('is-hidden')
+        $('.contract-address-label').toggleClass('is-hidden')
+        $('.presale-link').toggleClass('is-hidden')
+        $('[name=presale_link]').attr('disabled', $('[name=presale_link]').is(':disabled') ? false : true)
+        $('[name=bsc_contract_address]').attr('required', $('[name=bsc_contract_address]').is(':required') ? false : true)
+    })
 
-                var url = URL.createObjectURL(file);
-                var img = new Image;
+    $('[name=launch_date]').click(function() {
+        $('.launch-date').toggleClass('is-hidden')
+        $('[name=date_created_day]').attr('disabled', $('[name=date_created_day]').is(':disabled') ? false : true).attr('required', $('[name=date_created_day]').is(':required') ? false : true);
+        $('[name=date_created_month]').attr('disabled', $('[name=date_created_month]').is(':disabled') ? false : true).attr('required', $('[name=date_created_month]').is(':required') ? false : true);
+        $('[name=date_created_year]').attr('disabled', $('[name=date_created_year]').is(':disabled') ? false : true).attr('required', $('[name=date_created_year]').is(':required') ? false : true);
+    })
 
-                img.onload = function() {
-                    if(img.width > 200 || img.height > 200) {
-                        $(error).html('File must be max 200x200 pixels').show()
-                        return;
-                    }
-                    if(img.width != img.height) {
-                        $(error).html('Image must be square (e.g. 150x150 pixels)').show()
-                        return;
-                    }
+    if ($('input[name=presale]:checked').val() === 'Yes') {
+        $('.is-fair-launch').removeClass('is-hidden')
+        $('.presale-start-date').removeClass('is-hidden')
+        $('.presale-end-date').removeClass('is-hidden')
+        $('.cap-options').removeClass('is-hidden')
+    } else {
+        $('.is-fair-launch').addClass('is-hidden')
+        $('.presale-start-date').addClass('is-hidden')
+        $('.presale-end-date').addClass('is-hidden')
+        $('.cap-options').addClass('is-hidden')
+    }
 
-                    var formData = new FormData();
-                    formData.append('_token', $('.image-upload [name=_token]').val())
-                    formData.append('file', file)
-                    //console.log(formData)
 
-                    $.ajax({
-                        url: '/upload/index.php',
-                        type: 'POST',
-                        data: formData,
-                        processData: false,
-                        contentType: false
-                    }).done(function (response) {
-                        //console.log("Success: Files sent!", response);
+    // Image upload
+    $('.image-upload .has-image:not(.cropping)').click(function() {
+        $('.image-upload .has-image').removeClass('is-new')
+        if (!$('.image-upload .has-image').hasClass('cropping'))
+            $('[name=photo]').click()
+    })
 
-                        $('[name=image_url]').val(response)
-                        $('.image-upload .save').addClass('is-hidden')
-                        $('.image-upload .has-image img.empty').attr('src', response).removeClass('is-hidden')
-                        $('.image-upload .has-hidden-input').html('<input name="photo" type="file" class="is-hidden" />')
+    let error = $('.image-upload p.error')
+    let message = $('.image-upload p.message')
+    $('.has-hidden-input').on('change', '[name=photo]', function() {
+        $(error).html('').hide()
+        $(message).html('').hide()
 
-                    }).fail(function () {
-                        console.log("An error occurred, the files couldn't be sent!");
-                    });
-                }
+        let file = this.files[0]
+        console.log(file)
+        if (file.size > 300000) {
+            $(error).html('File size cannot exceed 300kb').show()
+            return;
+        }
 
-                img.src = url;
-            })
+        if (file.type != "image/png" && file.type != "image/jpg" && file.type != "image/jpeg") {
+            $(error).html('File must be .png or .jpg').show()
+            return;
+        }
 
-            $('.image-upload .remove').click(function () {
-                $(this).addClass('is-hidden')
-                $('.image-upload img').attr('src', $('.image-upload .has-image').data('placeholder'))
-                $('.image-upload [name=photo_url]').val(null)
-            })
+        var url = URL.createObjectURL(file);
+        var img = new Image;
+
+        img.onload = function() {
+            if (img.width > 200 || img.height > 200) {
+                $(error).html('File must be max 200x200 pixels').show()
+                return;
+            }
+            if (img.width != img.height) {
+                $(error).html('Image must be square (e.g. 150x150 pixels)').show()
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append('_token', $('.image-upload [name=_token]').val())
+            formData.append('file', file)
+            //console.log(formData)
+
+            $.ajax({
+                url: '/upload/index.php',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false
+            }).done(function(response) {
+                //console.log("Success: Files sent!", response);
+
+                $('[name=image_url]').val(response)
+                $('.image-upload .save').addClass('is-hidden')
+                $('.image-upload .has-image img.empty').attr('src', response).removeClass('is-hidden')
+                $('.image-upload .has-hidden-input').html('<input name="photo" type="file" class="is-hidden" />')
+
+            }).fail(function() {
+                console.log("An error occurred, the files couldn't be sent!");
+            });
+        }
+
+        img.src = url;
+    })
+
+    $('.image-upload .remove').click(function() {
+        $(this).addClass('is-hidden')
+        $('.image-upload img').attr('src', $('.image-upload .has-image').data('placeholder'))
+        $('.image-upload [name=photo_url]').val(null)
+    })
+})
   </script>
   </body>
 </html>

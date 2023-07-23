@@ -21,9 +21,9 @@
                   </div>
                   <div class="counter">
                      <div class="counter-label">Total Votes</div>
-                     <div class="counter-value">209,618</div>
+                     <div class="counter-value"><?php if (isset($res[0])){ echo $res[0]['vote']; } ?></div>
                   </div>
-                  <div class="counter">
+                  <div class="counter is-hidden">
                      <div class="counter-label">Votes Today</div>
                      <div class="counter-value votes-today">
                         <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@
                </div>
                <div class="vote-wrapper">
                   <button class="button is-primary open-voting-modal">
-                  Vote for HXPE
+                  Vote for <?php if (isset($res[0])){ echo $res[0]['symbol']; } ?>
                   </button>
                </div>
             </div>
@@ -45,7 +45,7 @@
                <div id="coin-description" class="scrollable-section panel">
                   <h2 class="label">Description</h2>
                   <div class="description full-description ">
-                     Once upon a time, in the golden city of dreams and stars, Hollywood, there existed an entity unlike any other. 'Hollywood X PEPE,' a meme coin with a personality as bold and charismatic as any A-lister, took center stage, capturing the hearts and screens of crypto enthusiasts and celebrities alike.
+                  <?php if (isset($res[0])){ echo $res[0]['description']; } ?>
                   </div>
                </div>
                <div id="summary" class="panel is-hidden-tablet scrollable-section">

@@ -59,11 +59,19 @@
                         </div>
                     </div>
                 </div>
-
+                <?php 
+                if(isset($_SESSION['id'])){
+                    $userid = $_SESSION['id'];
+                    $sql0 = "SELECT boosts  FROM user WHERE id = '$userid' ;";
+                    if($res = executeQueryV2($sql0, $mysqli)){
+                        $nboosts = $res[0]['boosts'];
+                    }
+                }              
+                ?>
                 <div class="navbar-end is-hidden-mobile">
                     <div class="buttons">
-                        <a href="/boosts.php" class="button buy-boosts">
-                            <span class="has-image"><img src="/assets/img/boost.svg" alt=""></span><span>x0</span>
+                        <a href="/boosts.php" class="button buy-boosts <?php if(!isset($_SESSION['id'])){ echo 'is-hidden'; } ?>">
+                            <span class="has-image"><img src="/assets/img/boost.svg" alt=""></span><span>x<?php if(isset($nboosts )) { if($nboosts != '0' ){ echo $nboosts ; }else{ echo '0'; } } ?></span>
                         </a>
                         <a class="button is-primary" href="/submit.php">
                             <strong> Submit Coin</strong>
@@ -99,7 +107,7 @@
                 <a href="/watchlist"><img src="/assets/img/watchlist.svg">Watchlist</a>
             </li>
             <li>
-                <a href="/ads"><img src="/assets/img/speaker.svg">Ads</a>
+                <a href="/ads.php"><img src="/assets/img/speaker.svg">Ads</a>
             </li>
             <li>
                 <a href="/boosts.php"><img src="/assets/img/boosticon.svg">Boosts</a>
@@ -115,16 +123,39 @@
                     <i class="fas fa-user-plus"></i>Register
                 </a>
             </li>
-            <?php }else{ 
-                
+        </ul>
+        <?php }else{                 
                 if($_SESSION['auth'] == 'admin'){
-                ?>                
+                ?>  
+        <div class="nav-label">Admin Tools</div>
+        <ul class="nav">   
+                          
                 <li>
                     <a href="/dashboard/user.php">
                         <i class="fas fa-users"></i>User Manager
                     </a>
                 </li>
+                <li>
+                    <a href="/dashboard/coins.php">
+                        <i class="fas fa-coins"></i>Coins Manager
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard/boosts.php">
+                        <i class="fas fa-rocket"></i>Boosts Manager
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard/ads.php">
+                        <i class="fas fa-volume-up"></i>Ads Manager
+                    </a>
+                </li>
                 <?php } ?>
+                <li>
+                    <a href="/dashboard/dash.php">
+                        <i class="fas fa-user"></i>Account
+                    </a>
+                </li>
                 <li>
                     <form action="" method="" class="logout">
                         <input type="hidden" name="_token" value="desmw2L6is8I6dgp0xRGAcTYHXgBBRUuhAO1yGOy">                   
