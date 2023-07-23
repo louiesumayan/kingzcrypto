@@ -121,7 +121,7 @@
    
    var myDropzonepromoted = new Dropzone(".promoted-drop", { // Make the whole body a dropzone
         url: "/upload/promoted.php", // Set the url
-        acceptedFiles: 'image/gif',
+        acceptedFiles: 'image/png',
         maxFiles: 1,
         thumbnailWidth: null,
         //thumbnailHeight: 80,

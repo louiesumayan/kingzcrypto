@@ -19,7 +19,7 @@ function compareDates($dateToCompare) {
         return false;
        
     } else {
-       // return "Today is $dateToCompare.";
+        //echo  "Today is $dateToCompare.";
         return true;
        
     }
@@ -28,22 +28,25 @@ function compareDates($dateToCompare) {
 $sql = "SELECT dates_banners, pid FROM buy_ads WHERE type like '%banner%' AND status = 'PAID'  ";
 $b = executeQueryV2($sql, $mysqli);
 if(!empty($b)){
+    $date = "";
     foreach($b as $i=> $val){
         $dat = $val['dates_banners'];
-        if( strpos($dat, ',') !== false){
-            $nd = explode(',', $dat);           
+        if( strpos($val['dates_banners'], ',') !== false){           
+            $nd = explode(',', $dat); 
             for ($i=0; $i < count($nd); $i++) { 
                 if(compareDates($nd[$i]) == true){
-                    echo $nd[$i];
-                    $img = "/upload/ads/user/banner/".$val['pid'].".gif" ;           
-                }else{
-                    $img = "/upload/ads/top/left.gif";                    
+                    //echo $nd[$i];
+                    $img = "/upload/ads/user/banner/".$val['pid'].".gif" ; 
                 }
             }
+        }else{          
+            if(compareDates($dat)){
+                $img = "/upload/ads/user/banner/".$val['pid'].".gif" ;  
+            }
         }
-        
     }
 }
+
 
 ?>
     
@@ -53,12 +56,12 @@ if(!empty($b)){
         <div class="has-banner">
             <div class="banner pro">
                 <a href="" class="pro-image" target="_blank">
-                    <img class="is-hidden-mobile" src="<?php if(isset($img) ){ echo $img; }  ?>" alt="">
-                    <img class="is-hidden-tablet" src="<?php if(isset($img) ){ echo $img; }  ?>" alt="">
+                    <img class="is-hidden-mobile" src="<?php if(isset($img) ){ echo $img; }else{ echo '/upload/ads/top/left.gif';}  ?>" alt="">
+                    <img class="is-hidden-tablet" src="<?php if(isset($img) ){ echo $img; }else{ echo '/upload/ads/top/left.gif';}  ?>" alt="">
                 </a>
                 <a href="" class="pro-image" target="_blank">
-                    <img class="is-hidden-mobile" src="/upload/ads/top/right.gif" alt="">
-                    <img class="is-hidden-tablet" src="https://storage.googleapis.com/coinsniper-assets/images/Obrjp8rikLj6XJJdX5B2EsyW7ifUxgH3CSRTmneS.gif" alt="">
+                    <img class="is-hidden-mobile" src="<?php if(isset($img) ){ echo $img; }else{ echo '/upload/ads/top/left.gif';}  ?>" alt="">
+                    <img class="is-hidden-tablet" src="<?php if(isset($img) ){ echo $img; }else{ echo '/upload/ads/top/left.gif';}  ?>" alt="">
                 </a>
             </div>
             <a href="" class="contact">Your banner here? Contact us!</a>
@@ -67,13 +70,37 @@ if(!empty($b)){
 
 <?php
 
+$sql = "SELECT dates_promoted, pid FROM buy_ads WHERE type like '%promoted%' AND status = 'PAID'  ";
+$b = executeQueryV2($sql, $mysqli);
+
+if(!empty($b)){
+    $date = "";
+    foreach($b as $i=> $val){
+        $dat = $val['dates_promoted'];
+        if( strpos($val['dates_promoted'], ',') !== false){           
+            $nd = explode(',', $dat); 
+            for ($i=0; $i < count($nd); $i++) { 
+                if(compareDates($nd[$i]) == true){
+                    //echo $nd[$i];
+                    $img1 = "/upload/ads/user/promoted/".$val['pid'].".gif" ; 
+                }
+            }
+        }else{          
+            if(compareDates($dat)){
+                //echo $dat;
+                $img1 = "/upload/ads/user/promoted/".$val['pid'].".gif" ;  
+            }
+        }
+    }
+}
+
 ?>
 
     <!-- promoted  -->
     <div class="container">
         <a href="" class="premium-banner-2" target="_blank">
-            <img src="/upload/ads/buttom/desktop.png" alt="" class="desktop">
-            <img src="/upload/ads/tablet.png" alt="" class="tablet">
-            <img src="/upload/ads/mobile.png" alt="" class="mobile">
+            <img src="<?php if(isset($img1) ){ echo $img1; }else{ echo '/upload/ads/buttom/desktop.png';}  ?>" alt="" class="desktop">
+            <img src="<?php if(isset($img1) ){ echo $img1; }else{ echo '/upload/ads/tablet.png';}  ?>" alt="" class="tablet">
+            <img src="<?php if(isset($img1) ){ echo $img1; }else{ echo '/upload/ads/mobile.png';}  ?>" alt="" class="mobile">
         </a>
     </div>

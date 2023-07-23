@@ -52,7 +52,7 @@
       <h2>Pay</h2>
       
       <div class="columns">
-         <div class="column is-12-mobile is-6-tablet is-8-widescreen">
+         <div class="column is-12-mobile is-6-tablet is-8-widescreen is-hidden">
             <form action="" method="POST" class="ad-pay-form">
                <div class="title">
                   1. Payment information
@@ -374,7 +374,7 @@
             </form>
          </div>
          <div class="column is-12-mobile is-6-tablet is-4-widescreen">
-            <div class="title">2. Confirm your order</div>
+            <div class="title"> Confirm your order</div>
             <div class="confirm-order">
                <div class="adv-type is-open banner">
                   <div class="top">
@@ -498,16 +498,9 @@
                   </table>
                   <div>
                      <div class="columns">
+                       
                         <div class="column is-6">
-                           <form id="cancel-ad" action="" method="POST">
-                              <input type="hidden" name="_token" value="">                                               
-                               <button form="cancel-ad" type="submit" class="button cancel">
-                              Cancel
-                              </button>
-                           </form>
-                        </div>
-                        <div class="column is-6">
-                           <label id="payads" class="button is-success" for="submit-form" tabindex="0">Pay Now</label>
+                           <a id="payads" href="/pay.php" class="button is-success" for="submit-form" tabindex="0">Pay Now</a>
                         </div>
                      </div>
                   </div>

@@ -179,7 +179,7 @@
                            </table>
                         </div>
                         <div class="has-button">
-                           <button type="submit" class="button is-primary" >
+                           <button type="submit" class="button is-primary" disabled="disabled" >
                            Buy <span class="boost-amount"></span> Boosts
                            </button>
                         </div>

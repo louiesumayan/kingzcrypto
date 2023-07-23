@@ -108,7 +108,7 @@
                //echo $sql;
                
                if(executeQueryV2($sql, $mysqli)){
-                  header('Location: /ads_reservations.php');
+                  header('Location: /pay.php');
                   exit();
                
                }

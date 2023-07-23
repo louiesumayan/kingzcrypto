@@ -121,7 +121,7 @@
    
    var myDropzonepremium = new Dropzone(".premium-drop", { // Make the whole body a dropzone
         url: "/upload/premium.php", // Set the url
-        acceptedFiles: 'image/gif',
+        acceptedFiles: 'image/png',
         maxFiles: 1,
         thumbnailWidth: null,
         //thumbnailHeight: 80,
