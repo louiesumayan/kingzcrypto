@@ -9,7 +9,10 @@ $('.nav-burger').on('click', function(){
 
 var mserach = document.getElementById('search-bar-desktop');
 
+var ms = document.getElementById('nav-search');
+
 mserach.addEventListener("click", showSearch);
+ms.addEventListener("touchstart", showSearch);
 
 function  showSearch(){
     $("#msearch").addClass('is-open');

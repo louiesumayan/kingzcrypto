@@ -1,7 +1,12 @@
 <?php
 session_start();
 require('./inc/db.php');  //include config file with db connection details and other constants
-$uid = $_SESSION['id'];
+require('mail.php');
+
+
+if(isset($_SESSION['id'])){
+    $uid = $_SESSION['id'];
+}
 
 
 
@@ -35,6 +40,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Output the JSON
             echo $jsonOutput;
+        }
+    }
+    if(isset($_POST['forgot']) && $_POST['email']){
+        $email = $mysqli -> real_escape_string($_POST['email']);
+        $sql = "SELECT * FROM user WHERE email = '$email' and auth IS NOT NULL";
+        $res = executeQueryV2($sql, $mysqli);
+        if(!empty($res) ){
+            print_r($res);
+            //sendHtmlEmail($res[0]['email'], $res[0]['name'], "Reset Your Paasword", "forgot", $res[0]['ticket']);
+            //header('Location: /login.php');
+            //exit();
+        }
+
+    }
+}
+
+if($_SERVER["REQUEST_METHOD"] == "GET"){
+    if(isset($_GET['ticket'])){
+        $ticket = $_GET['ticket'];
+        $sql = "SELECT * FROM user WHERE ticket = '$ticket' and auth IS NULL";
+        $res0 = executeQueryV2($sql, $mysqli);
+        if(!empty($res0) ){
+              $sqll = "UPDATE user set `auth` = 'user' WHERE ticket = '$ticket'";
+              if(executeQueryV2($sqll,$mysqli)){
+                header("Location: /login.php");
+                exit();
+              }
+        }
+    }
+
+    if(isset($_GET['forgot'])){
+        $ticket = $_GET['forgot'];
+        $sql = "SELECT * FROM user WHERE ticket = '$ticket' and auth IS NOT NULL";
+        $res0 = executeQueryV2($sql, $mysqli);
+        if(!empty($res0)){ 
+             // $sqll = "UPDATE user set `auth` = 'user' WHERE ticket = '$ticket'";
+             // if(executeQueryV2($sqll,$mysqli)){
+                $_SESSION['forgot'] = $ticket;
+                header("Location: /reset.php");
+                exit();
+              
+        }
+        else{
+            echo  "invalid ticket";
         }
     }
 }

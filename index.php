@@ -7,6 +7,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
   exit;
 }
 
+include "./inc/db.php"
 
 ?>
 <!DOCTYPE html>

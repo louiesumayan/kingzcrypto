@@ -1,5 +1,6 @@
 <?php 
 require "./inc/db.php";
+require "./mail.php";
 
 
 // Define variables and initialize with empty values
@@ -69,13 +70,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Check input errors before inserting in database
     if( empty($username_err) && empty($password_err) && empty($confirm_password_err)){        
-        
+        $ticket = bin2hex(random_bytes(16));
         // Prepare an insert statement
-        $sql = "INSERT INTO user (email, password, name) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO user (email, password, name, ticket) VALUES (?, ?, ?,?)";
          
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("sss", $param_username, $param_password, $param_name);
+            $stmt->bind_param("ssss", $param_username, $param_password, $param_name, $ticket);
             
             // Set parameters
             $param_name = $name;
@@ -85,6 +86,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Redirect to login page
+
+                sendHtmlEmail($email, $name, "Confirm Your Email", "confirm", $ticket);
+
+
                 header("location: /login.php");
             } else{
                 $pswdno = "Oops! Something went wrong. Please try again later.";

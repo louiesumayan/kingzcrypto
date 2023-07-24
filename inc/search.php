@@ -1,4 +1,4 @@
-<section id="msearch" class="mobile-search">
+<section id="msearch" class="mobile-search ">
    <div class="container">
       <div class="field has-search">
          <div class="control has-icons-left">
